@@ -17,19 +17,10 @@ Each module below contains a collection of notebooks with practical exercises an
 ---
 
 ### 📂 Module 3 – Geospatial Data Foundations
-- [03_01_geopandas_intro.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module3/03_01_geopandas_intro.ipynb)
-- [03_02_osmnx_networks.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module3/03_02_osmnx_networks.ipynb)
-- [03_03_combining_osm_and_accidents.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module3/03_03_combining_osm_and_accidents.ipynb)
+- [module_3_episode_11_geopandas_intro.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module_3_episode_11_geopandas_intro.ipynb)
 
 ---
 
-### 📂 Module 4 – Data Preparation & EDA
-- [04_01_cleaning_geospatial_data.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module4/04_01_cleaning_geospatial_data.ipynb)
-- [04_02_exploratory_spatial_analysis.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module4/04_02_exploratory_spatial_analysis.ipynb)
-
----
-
-*(Other modules will be added progressively.)*
 
 ## 🚀 How to Use
 
