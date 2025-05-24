@@ -35,12 +35,12 @@ Each module below contains notebooks with practical examples and exercises.
 ### 📂 Module 5 – Visualizing Urban Mobility
 
 - [Module_5_Episode_18_Accident_Map.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/Module_5_Episode_18_Accident_Map.ipynb)
+- [Module_5_Episode_19_Folium_Accidents.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/Module_5_Episode_19_Folium_Accidents.ipynb)  
 
 ---
 
 ### 📂 Module 6 – Spatial Analysis
 
-- [Module_6_Episode_19_Folium_Accidents.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/Module_6_Episode_19_Folium_Accidents.ipynb)  
 - [module_6_episode_22_isochrones.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/module_6_episode_22_isochrones.ipynb)  
 - [Module_6_Episode_23_DBSCAN_Hotspot_Map.ipynb](https://colab.research.google.com/github/tamagusko/geospatial-data-science-course/blob/main/notebooks/Module_6_Episode_23_DBSCAN_Hotspot_Map.ipynb)
 
