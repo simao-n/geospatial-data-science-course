@@ -31,8 +31,26 @@ st.sidebar.header("Filter Options")
 weekday_options = df["weekday"].dropna().unique()
 selected_weekdays = st.sidebar.multiselect("Filter by Weekday", weekday_options, default=weekday_options)
 
+# Sidebar filter by hour
+hour_options = sorted(df["hour"].dropna().unique())
+selected_hours = st.sidebar.multiselect("Filter by Hour", hour_options, default=hour_options)
+
+# Sidebar filter by severity
+severity_options = df["severity"].dropna().unique()
+selected_severities = st.sidebar.multiselect("Filter by Severity", severity_options, default=severity_options)
+
+# Sidebar filter by month
+month_options = sorted(df["month"].dropna().unique())
+selected_months = st.sidebar.multiselect("Filter by Month", month_options, default=month_options)
+
 # Filter dataset
-df_filtered = df[df["weekday"].isin(selected_weekdays)]
+df_filtered = df[
+    (df["weekday"].isin(selected_weekdays)) &
+    (df["hour"].isin(selected_hours)) &
+    (df["severity"].isin(selected_severities)) &
+    (df["month"].isin(selected_months))
+]
+
 
 # Convert to GeoDataFrame
 gdf = gpd.GeoDataFrame(
