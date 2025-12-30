@@ -4,6 +4,9 @@ import geopandas as gpd
 from shapely.geometry import Point
 import folium
 from streamlit_folium import st_folium
+import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Page configuration
 st.set_page_config(page_title="Lisbon Road Accidents", layout="wide")
@@ -75,6 +78,40 @@ df_filtered = df[
 ]
 
 
+# ---- Visual summaries ----
+st.subheader("Visual Summaries")
+
+# Example 1: Accidents by severity
+fig1 = px.histogram(df_filtered, x="severity", color="severity",
+                    title="Accidents by Severity", 
+                    labels={"severity":"Severity"}, 
+                    color_discrete_sequence=px.colors.sequential.Redor)
+st.plotly_chart(fig1, use_container_width=True)
+
+# Example 2: Accidents by weekday
+fig2 = px.bar(df_filtered["weekday"].value_counts().reset_index(), 
+              x="index", y="weekday", 
+              labels={"index":"Weekday", "weekday":"Number of Accidents"}, 
+              title="Accidents by Weekday", 
+              color="weekday", color_discrete_sequence=px.colors.qualitative.Vivid)
+st.plotly_chart(fig2, use_container_width=True)
+
+# ---- Insights ----
+st.markdown("""
+**Insights from the filtered data:**
+- Most accidents occur on **{}**.
+- Severity distribution shows **{}** of accidents are minor, **{}** are serious, and **{}** are fatal.
+""".format(
+    df_filtered["weekday"].mode()[0],
+    (df_filtered["severity"]=="minor").sum(),
+    (df_filtered["severity"]=="serious").sum(),
+    (df_filtered["severity"]=="fatal").sum()
+))
+
+
+
+
+
 # Convert to GeoDataFrame
 gdf = gpd.GeoDataFrame(
     df_filtered,
@@ -96,6 +133,19 @@ for _, row in gdf.iterrows():
         fill_opacity=0.6,
         popup=f"ID: {row['id']}<br>Weekday: {row['weekday']}<br>Fatalities: {row['fatalities_30d']}"
     ).add_to(m)
+
+from folium.plugins import MarkerCluster
+
+# Add clustering
+marker_cluster = MarkerCluster().add_to(m)
+for _, row in gdf.iterrows():
+    folium.Marker(
+        location=[row["latitude"], row["longitude"]],
+        popup=f"ID: {row['id']}<br>Severity: {row['severity']}"
+    ).add_to(marker_cluster)
+
+
+
 
 # Show map
 st.subheader("Accident Map")
