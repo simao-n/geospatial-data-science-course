@@ -89,12 +89,21 @@ fig1 = px.histogram(df_filtered, x="severity", color="severity",
 st.plotly_chart(fig1, use_container_width=True)
 
 # Example 2: Accidents by weekday
-fig2 = px.bar(df_filtered["weekday"].value_counts().reset_index(), 
-              x="index", y="weekday", 
-              labels={"index":"Weekday", "weekday":"Number of Accidents"}, 
-              title="Accidents by Weekday", 
-              color="weekday", color_discrete_sequence=px.colors.qualitative.Vivid)
+weekday_counts = df_filtered["weekday"].value_counts().reset_index()
+weekday_counts.columns = ["weekday", "count"]  # rename columns
+
+fig2 = px.bar(
+    weekday_counts,
+    x="weekday",
+    y="count",
+    labels={"weekday": "Weekday", "count": "Number of Accidents"},
+    title="Accidents by Weekday",
+    color="weekday",
+    color_discrete_sequence=px.colors.qualitative.Vivid
+)
 st.plotly_chart(fig2, use_container_width=True)
+
+
 
 # ---- Insights ----
 st.markdown("""
