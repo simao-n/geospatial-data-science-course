@@ -44,18 +44,27 @@ df["severity"] = df.apply(determine_severity, axis=1)
 st.sidebar.header("Filter Options")
 weekday_options = df["weekday"].dropna().unique()
 selected_weekdays = st.sidebar.multiselect("Filter by Weekday", weekday_options, default=weekday_options)
+if not selected_weekdays:
+    selected_weekdays = weekday_options
 
 # Sidebar filter by hour
 hour_options = sorted(df["hour"].dropna().unique())
 selected_hours = st.sidebar.multiselect("Filter by Hour", hour_options, default=hour_options)
+if not selected_hours:
+    selected_hours = hour_options
 
 # Sidebar filter by severity
 severity_options = df["severity"].dropna().unique()
 selected_severities = st.sidebar.multiselect("Filter by Severity", severity_options, default=severity_options)
+if not selected_severities:
+    selected_severities = severity_options
 
 # Sidebar filter by month
 month_options = sorted(df["month"].dropna().unique())
 selected_months = st.sidebar.multiselect("Filter by Month", month_options, default=month_options)
+if not selected_months:
+    selected_months = month_options
+
 
 # Filter dataset
 df_filtered = df[
