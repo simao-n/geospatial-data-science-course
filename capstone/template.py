@@ -26,6 +26,20 @@ st.markdown(
 # Load dataset
 df = pd.read_csv("data/Road_Accidents_Lisbon.csv")
 
+# ---- Create severity column ----
+def determine_severity(row):
+    if row["fatalities_30d"] > 0:
+        return "fatal"
+    elif row["serious_injuries_30d"] > 0:
+        return "serious"
+    elif row["minor_injuries_30d"] > 0:
+        return "minor"
+    else:
+        return "none"
+
+df["severity"] = df.apply(determine_severity, axis=1)
+
+
 # Sidebar filter by weekday
 st.sidebar.header("Filter Options")
 weekday_options = df["weekday"].dropna().unique()
