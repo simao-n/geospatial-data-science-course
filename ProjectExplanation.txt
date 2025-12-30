@@ -1,0 +1,24 @@
+Lisbon Road Accidents – Interactive Dashboard
+
+This project presents an interactive dashboard to explore and analyze road accident data in Lisbon during 2023. The dashboard is designed to support stakeholders, such as city planners, traffic authorities, and road safety analysts, in making informed decisions by providing spatial, temporal, and severity-based insights.
+
+Filters and Interactivity:
+Users can filter accidents by weekday, hour, severity, and month using the sidebar controls. These filters dynamically update the visualizations and map, enabling stakeholders to focus on specific periods or accident types, such as peak-hour collisions or severe accidents.
+
+Features and Design Choices:
+The dashboard integrates multiple features to enhance analysis and usability:
+
+Interactive Map: Accidents are plotted on a Folium map centered on Lisbon, with clustering to highlight dense areas. Circle markers and popups display key information, such as accident ID, weekday, and fatalities. This spatial visualization helps identify hotspots and areas that may require targeted interventions.
+
+Visual Summaries: Plotly charts display the distribution of accidents by severity and weekday, providing an intuitive overview of patterns in the dataset. Color coding and clear labels make the charts accessible to non-technical users.
+
+Key Insights Section: A summary of top findings highlights the most common accident days and the distribution of severity, offering immediate, actionable information.
+
+Insights and Stakeholder Value:
+The dashboard reveals that certain weekdays experience higher accident rates, and minor accidents dominate the dataset, while serious and fatal accidents are less frequent but critical for safety planning. These insights can guide targeted awareness campaigns, traffic management strategies, and infrastructure improvements.
+
+Design Rationale:
+The combination of filters, interactive mapping, and clear visual summaries ensures that users can explore both spatial and temporal trends in road accidents. The layout is structured to first present the map for geographical context, followed by charts for quantitative analysis, and a concise insights section to support quick decision-making.
+
+Lessons Learned:
+During development, integrating GeoPandas with Folium and handling dynamic data filtering highlighted the importance of efficient data preprocessing and column management. Additionally, ensuring clarity in visualizations for non-technical stakeholders reinforced the value of user-centered design. The project demonstrates how interactive dashboards can transform complex traffic datasets into actionable knowledge for urban safety planning.
