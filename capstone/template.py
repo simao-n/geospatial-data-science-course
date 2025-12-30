@@ -78,6 +78,46 @@ df_filtered = df[
 ]
 
 
+# Convert to GeoDataFrame
+gdf = gpd.GeoDataFrame(
+    df_filtered,
+    geometry=[Point(xy) for xy in zip(df_filtered["longitude"], df_filtered["latitude"])],
+    crs="EPSG:4326"
+)
+
+# Center map on Lisbon
+center = [gdf["latitude"].mean(), gdf["longitude"].mean()]
+m = folium.Map(location=center, zoom_start=12, tiles="CartoDB Positron")
+
+# Add accident markers
+for _, row in gdf.iterrows():
+    folium.CircleMarker(
+        location=[row["latitude"], row["longitude"]],
+        radius=5,
+        color="red",
+        fill=True,
+        fill_opacity=0.6,
+        popup=f"ID: {row['id']}<br>Weekday: {row['weekday']}<br>Fatalities: {row['fatalities_30d']}"
+    ).add_to(m)
+
+from folium.plugins import MarkerCluster
+
+# Add clustering
+marker_cluster = MarkerCluster().add_to(m)
+for _, row in gdf.iterrows():
+    folium.Marker(
+        location=[row["latitude"], row["longitude"]],
+        popup=f"ID: {row['id']}<br>Severity: {row['severity']}"
+    ).add_to(marker_cluster)
+
+
+
+
+# Show map
+st.subheader("Accident Map")
+st_data = st_folium(m, width=800, height=600)
+
+
 # ---- Visual summaries ----
 st.subheader("Visual Summaries")
 
@@ -121,41 +161,4 @@ st.markdown("""
 
 
 
-# Convert to GeoDataFrame
-gdf = gpd.GeoDataFrame(
-    df_filtered,
-    geometry=[Point(xy) for xy in zip(df_filtered["longitude"], df_filtered["latitude"])],
-    crs="EPSG:4326"
-)
 
-# Center map on Lisbon
-center = [gdf["latitude"].mean(), gdf["longitude"].mean()]
-m = folium.Map(location=center, zoom_start=12, tiles="CartoDB Positron")
-
-# Add accident markers
-for _, row in gdf.iterrows():
-    folium.CircleMarker(
-        location=[row["latitude"], row["longitude"]],
-        radius=5,
-        color="red",
-        fill=True,
-        fill_opacity=0.6,
-        popup=f"ID: {row['id']}<br>Weekday: {row['weekday']}<br>Fatalities: {row['fatalities_30d']}"
-    ).add_to(m)
-
-from folium.plugins import MarkerCluster
-
-# Add clustering
-marker_cluster = MarkerCluster().add_to(m)
-for _, row in gdf.iterrows():
-    folium.Marker(
-        location=[row["latitude"], row["longitude"]],
-        popup=f"ID: {row['id']}<br>Severity: {row['severity']}"
-    ).add_to(marker_cluster)
-
-
-
-
-# Show map
-st.subheader("Accident Map")
-st_data = st_folium(m, width=800, height=600)
