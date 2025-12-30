@@ -43,27 +43,27 @@ df["severity"] = df.apply(determine_severity, axis=1)
 # Sidebar filter by weekday
 st.sidebar.header("Filter Options")
 weekday_options = df["weekday"].dropna().unique()
-selected_weekdays = st.sidebar.multiselect("Filter by Weekday", weekday_options, default=weekday_options)
+selected_weekdays = st.sidebar.multiselect("Filter by Weekday", weekday_options, default=[])
 if not selected_weekdays:
-    selected_weekdays = weekday_options
+    selected_weekdays = weekday_options  # Use all if none selected
 
 # Sidebar filter by hour
 hour_options = sorted(df["hour"].dropna().unique())
-selected_hours = st.sidebar.multiselect("Filter by Hour", hour_options, default=hour_options)
+selected_hours = st.sidebar.multiselect("Filter by Hour", hour_options, default=[])
 if not selected_hours:
-    selected_hours = hour_options
+    selected_hours = hour_options  # Use all if none selected
 
 # Sidebar filter by severity
 severity_options = df["severity"].dropna().unique()
-selected_severities = st.sidebar.multiselect("Filter by Severity", severity_options, default=severity_options)
+selected_severities = st.sidebar.multiselect("Filter by Severity", severity_options, default=[])
 if not selected_severities:
-    selected_severities = severity_options
+    selected_severities = severity_options  # Use all if none selected
 
 # Sidebar filter by month
 month_options = sorted(df["month"].dropna().unique())
-selected_months = st.sidebar.multiselect("Filter by Month", month_options, default=month_options)
+selected_months = st.sidebar.multiselect("Filter by Month", month_options, default=[])
 if not selected_months:
-    selected_months = month_options
+    selected_months = month_options  # Use all if none selected
 
 
 # Filter dataset
