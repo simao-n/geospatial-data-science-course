@@ -147,7 +147,7 @@ st.plotly_chart(fig2, use_container_width=True)
 
 # ---- Insights ----
 st.markdown("""
-**Insights from the filtered data:**
+**Key insights:**
 - Most accidents occur on **{}**.
 - Severity distribution shows **{}** of accidents are minor, **{}** are serious, and **{}** are fatal.
 """.format(
