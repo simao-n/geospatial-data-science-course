@@ -6,3 +6,4 @@ shapely
 pandas
 seaborn
 matplotlib
+plotly
